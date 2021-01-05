@@ -1,0 +1,54 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>
+            <h3>Book New Appointment </h3>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="appointmentId" [value]="service.formData.appointmentId" />
+    <input type="hidden" name="userId" [value]="service.formData.userId" />
+    <div class="form-group">
+        <label>NAME</label>
+        <input class="form-control form-control-lg" placeholder="Full Name" name="patientName" #patientName="ngModel" [(ngModel)]="service.formData.patientName" required [class.invalid]="patientName.invalid && patientName.touched">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>AGE</label>
+            <input class="form-control form-control-lg" placeholder="Age" name="patientAge" #patientAge="ngModel" [(ngModel)]="service.formData.patientAge" required [class.invalid]="patientAge.invalid && patientAge.touched">
+        </div>
+        <div class="form-group col-md-6">
+            <label>GENDER</label>
+            <mat-select class="form-control form-control-lg" placeholder="Select Gender" name="patientGender" #patientGender="ngModel" [(ngModel)]="service.formData.patientGender" required [class.invalid]="patientGender.invalid && patientGender.touched">
+                <mat-option *ngFor="let gender of genderlists" [value]="gender.gender">
+                    {{gender.view}}
+                </mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>NUMBER</label>
+        <input class="form-control form-control-lg" type="tel" placeholder="Mobile Number" name="patientNumber" #patientNumber="ngModel" [(ngModel)]="service.formData.patientNumber" required maxlength="10" minlength="10" [class.invalid]="patientNumber.invalid && patientNumber.touched">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>SELECT DOCTOR</label>
+            <mat-select class="form-control form-control-lg" placeholder="Select Doctor" name="selectDoctor" #selectDoctor="ngModel" [(ngModel)]="service.formData.selectDoctor" required [class.invalid]="selectDoctor.invalid && selectDoctor.touched">
+                <mat-option *ngFor="let doctorlist of doctorlists" [value]="doctorlist.name">
+                    {{doctorlist.viewName}}
+                </mat-option>
+            </mat-select>
+        </div>
+        <div class="form-group col-md-6">
+            <label>SELECT DATE</label>
+            <input class="form-control form-control-lg" type="date" placeholder="DD/MM/YY" name="selectDate" #selectDate="ngModel" [(ngModel)]="service.formData.selectDate" required [class.invalid]="selectDate.invalid && selectDate.touched">
+        </div>
+        <div class="form-group col-md-12">
+            <label>DESCRIPTION</label>
+            <input class="form-control form-control-lg" placeholder="Description" name="description" #selectDoctor="ngModel" [(ngModel)]="service.formData.description">
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">BOOK APPOINTMENT</button>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>
+            <h3>Appointment List</h3>
+        </span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>TOKEN NO</th>
+                    <th>NAME</th>
+                    <th>DOCTOR</th>
+                    <th>DATE</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ad of service.list">
+                    <td (click)="populateForm(ad)">{{ad.appointmentId}}</td>
+                    <td (click)="populateForm(ad)">{{ad.patientName}}</td>
+                    <td (click)="populateForm(ad)">{{ad.selectDoctor}}</td>
+                    <td (click)="populateForm(ad)">{{ad.selectDate}}</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(ad.appointmentId)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
